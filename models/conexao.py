@@ -1,9 +1,16 @@
-import mysql.connector
+import sqlite3
 
 
 class Conexao:
     def __init__(self):
         self.conectar()
+
+        self.cursor.execute(
+            "CREATE TABLE IF NOT EXISTS senha (id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT NOT NULL, senha TEXT NOT NULL)"
+        )
+
+        self.conexao.commit()
+        self.desconectar()
 
     # Region: Connection Management
 
@@ -13,16 +20,11 @@ class Conexao:
 
     def conectar(self):
         # Database connection setup
-        self.conexao = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="10253565#Rai",
-            database="senha",
-        )
+        self.conexao = sqlite3.connect("gerenciadorSenha.db")
 
         self.cursor = self.conexao.cursor()
 
-        if self.conexao.is_connected():
+        if self.conexao is not None:
             print("Sucesso")
         else:
             print("Erro")
@@ -47,3 +49,6 @@ class Conexao:
         self.desconectar()
 
         return rs
+
+
+conn = Conexao()

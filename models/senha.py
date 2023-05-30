@@ -1,13 +1,14 @@
 import secrets
 import string
-from conexao import Conexao
+
+# from conexao import Conexao
 
 
 class Senha:
     def __init__(self, lenght):
         self.length = lenght
         self.itens = string.ascii_letters + string.digits + "!@#$&*?<>"
-        self.conexao = Conexao()
+        # self.conexao = Conexao()
 
     # Region: Password Generation
 
