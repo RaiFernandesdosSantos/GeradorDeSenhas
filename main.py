@@ -1,10 +1,22 @@
-from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import QUrl
+from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtCore import QUrl
 import sys
+import os
 
 app = QApplication(sys.argv)
-view = QWebEngineView()
-view.load(QUrl("https://google.com"))
-view.show()
+
+window = QMainWindow()
+window.setWindowTitle("Gerador de senhas")
+window.resize(800, 800)
+
+view = QWebEngineView(window)
+
+path = os.path.dirname(__file__)
+home = os.path.join(path, "view", "home", "home.html")
+
+view.setUrl(QUrl.fromLocalFile(home))
+
+window.setCentralWidget(view)
+window.show()
 sys.exit(app.exec())
