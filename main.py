@@ -8,12 +8,12 @@ app = QApplication(sys.argv)
 
 window = QMainWindow()
 window.setWindowTitle("Gerador de senhas")
-window.resize(800, 800)
+window.resize(700, 550)
 
 view = QWebEngineView(window)
 
 path = os.path.dirname(__file__)
-home = os.path.join(path, "view", "home", "home.html")
+home = os.path.join(path, "view", "home", "index.html")
 
 view.setUrl(QUrl.fromLocalFile(home))
 

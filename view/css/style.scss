@@ -26,7 +26,7 @@ html {
     grid-column: 1 / 17;
     display: flex;
     align-items: center;
-    padding-left: 2rem;
+    justify-content: center;
 
     .menu-header {
       border: 3px solid blue;
@@ -48,7 +48,7 @@ html {
 
     .gerar-senha {
       border: 3px solid magenta;
-      width: 60%;
+      width: 65%;
       height: 90%;
       padding: 2rem;
 
@@ -76,6 +76,18 @@ html {
             height: 3rem;
             width: 20rem;
             border-radius: 1rem;
+            padding: 0.5rem;
+          }
+        }
+
+        .frase {
+          border: 3px solid green;
+          height: 15rem;
+
+          textarea {
+            height: 13rem;
+            border-radius: 1rem;
+            padding: 0.5rem;
           }
         }
 
@@ -83,9 +95,29 @@ html {
           border: 3px solid red;
           display: flex;
           gap: 2rem;
-          justify-content: flex-end;
+          justify-content: space-between;
           align-items: center;
         }
+      }
+    }
+
+    .table {
+      border: 3px solid black;
+      height: 90%;
+      width: 80%;
+      display: grid;
+      grid-template-rows: 1fr 4fr 1fr;
+
+      .thead {
+        border: 3px solid navy;
+      }
+
+      .tbody {
+        border: 3px solid lawngreen;
+      }
+
+      .tfooter {
+        border: 3px solid indigo;
       }
     }
   }

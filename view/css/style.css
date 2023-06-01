@@ -38,7 +38,7 @@ html {
   grid-column: 1/17;
   display: flex;
   align-items: center;
-  padding-left: 2rem;
+  justify-content: center;
 }
 .container #header .menu-header {
   border: 3px solid blue;
@@ -58,7 +58,7 @@ html {
 }
 .container #main .gerar-senha {
   border: 3px solid magenta;
-  width: 60%;
+  width: 65%;
   height: 90%;
   padding: 2rem;
 }
@@ -85,13 +85,39 @@ html {
   height: 3rem;
   width: 20rem;
   border-radius: 1rem;
+  padding: 0.5rem;
+}
+.container #main .gerar-senha form .frase {
+  border: 3px solid green;
+  height: 15rem;
+}
+.container #main .gerar-senha form .frase textarea {
+  height: 13rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
 }
 .container #main .gerar-senha form .btn-group {
   border: 3px solid red;
   display: flex;
   gap: 2rem;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+}
+.container #main .table {
+  border: 3px solid black;
+  height: 90%;
+  width: 80%;
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr;
+}
+.container #main .table .thead {
+  border: 3px solid navy;
+}
+.container #main .table .tbody {
+  border: 3px solid lawngreen;
+}
+.container #main .table .tfooter {
+  border: 3px solid indigo;
 }
 .container #footer {
   border: 3px solid blue;

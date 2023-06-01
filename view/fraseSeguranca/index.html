@@ -7,5 +7,56 @@
 
     <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <header id="header">
+        <div class="menu-header">
+          <div class="btn">
+            <a href="../home/index.html" class="link-header-item"
+              >Gerar Senha</a
+            >
+          </div>
+
+          <div class="btn">
+            <span>Frase de segurança</span>
+          </div>
+
+          <div class="btn">
+            <a href="../lista/index.html" class="link-header-item"
+              >Minhas senhas</a
+            >
+          </div>
+
+          <div class="btn">
+            <a href="#" class="link-header-item">Testar senha</a>
+          </div>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="gerar-senha">
+          <h1>Guardar Frases de Seguranca</h1>
+          <form action="">
+            <div class="input-group">
+              <label for="descricao">Descricao: </label>
+              <input type="text" name="descricao" placeholder="Descricao" />
+            </div>
+
+            <div class="input-group frase">
+              <label for="senha">Frase(s) de Seguranca: </label>
+              <!-- <input type="text" name="senha" placeholder="Senha gerada" /> -->
+              <textarea name="frase" id="frase" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn">Salvar senha</button>
+              <button class="btn">Limpar</button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <footer id="footer"></footer>
+    </div>
+  </body>
 </html>
