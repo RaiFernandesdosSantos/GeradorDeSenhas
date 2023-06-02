@@ -106,18 +106,59 @@ html {
       height: 90%;
       width: 80%;
       display: grid;
-      grid-template-rows: 1fr 4fr 1fr;
+      grid-template-rows: 1fr 5fr 1fr;
 
       .thead {
         border: 3px solid navy;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        .table-header {
+          border: 3px solid magenta;
+          display: flex;
+          align-items: center;
+          padding: 0 0.5rem 0 0.5rem;
+
+          &:nth-child(2) {
+            justify-content: flex-end;
+          }
+        }
       }
 
       .tbody {
         border: 3px solid lawngreen;
+        display: grid;
+        grid-template: repeat(5, 1fr) / 1fr 1fr;
+        gap: 0 1rem;
       }
 
       .tfooter {
         border: 3px solid indigo;
+        display: flex;
+        align-items: center;
+
+        .table-row {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .table-row {
+        border: 3px solid indianred;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .table-cell {
+          border: 3px solid gold;
+          display: flex;
+          align-items: center;
+          padding: 0 0.5rem 0 0.5rem;
+
+          &:nth-child(2) {
+            justify-content: flex-end;
+          }
+        }
       }
     }
   }
