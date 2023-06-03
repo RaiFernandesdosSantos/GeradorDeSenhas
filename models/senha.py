@@ -9,6 +9,7 @@ class Senha:
         self.length = lenght
         self.itens = string.ascii_letters + string.digits + "!@#$&*?<>"
         # self.conexao = Conexao()
+        self.pontuacao = 0
 
     # Region: Password Generation
 
@@ -33,6 +34,9 @@ class Senha:
         senha = "".join(senha)
 
         return senha
+
+    def testarSenha(self):
+        pass
 
     # Region: Password Management
 

@@ -141,6 +141,13 @@ html {
         .table-row {
           height: 100%;
           width: 100%;
+          display: flex;
+          justify-content: flex-end;
+
+          .table-cell {
+            border: 3px solid forestgreen;
+            width: 50%;
+          }
         }
       }
 

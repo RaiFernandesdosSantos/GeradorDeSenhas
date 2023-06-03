@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
   </head>
   <body>
     <div class="container">
@@ -32,18 +33,19 @@
       <main id="main">
         <div class="gerar-senha">
           <h1>Gerar senha</h1>
-          <form action="">
+          <form action="" id="cadastra-senha">
             <div class="input-group">
               <label for="tamanho">Tamanho da senha: </label>
               <input
                 type="text"
                 name="tamanho"
                 placeholder="Tamanho da senha"
+                id="lenght"
               />
             </div>
 
             <div class="btn-group">
-              <button class="btn">Gerar senha</button>
+              <button class="btn" id="gerar-senha">Gerar senha</button>
             </div>
 
             <div class="input-group">
@@ -65,5 +67,20 @@
       </main>
       <footer id="footer"></footer>
     </div>
+
+    <script>
+      new QWebChannel(qt.webChannelTransport, function (channel) {
+        var formulario = document.getElementById("cadastra-senha");
+        var btnGenarate = document.getElementById("gerar-senha");
+        var lenghtInput = document.getElementById("lenght");
+
+        btnGenarate.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          var lenght = lenghtInput.value;
+          channel.objects.processaFormulario.generateSenha(lenght);
+        });
+      });
+    </script>
   </body>
 </html>
