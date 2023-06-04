@@ -6,7 +6,7 @@ class Conexao:
         self.conectar()
 
         self.cursor.execute(
-            "CREATE TABLE IF NOT EXISTS senha (id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT NOT NULL, senha TEXT NOT NULL)"
+            "CREATE TABLE IF NOT EXISTS senha (id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT NOT NULL, senha TEXT NOT NULL, pontuacao INTEGER NOT NULL)"
         )
 
         self.conexao.commit()
@@ -31,24 +31,27 @@ class Conexao:
 
     # Region: Query Execution
 
-    def executeSql(self, sql):
+    def executeSql(self, sql, params=None):
         self.conectar()
         rs = []
 
         # Execute the query
 
-        self.cursor.execute(sql)
+        try:
+            if params is not None:
+                self.cursor.execute(sql, params)
+            else:
+                self.cursor.execute(sql)
 
-        if not sql.strip().lower().startswith("select"):
-            # For non-SELECT queries, commit the changes to the database
-            self.conexao.commit()
-        else:
-            # For SELECT queries, fetch the result set
-            rs = self.cursor.fetchall()
+            if not sql.strip().lower().startswith("select"):
+                # For non-SELECT queries, commit the changes to the database
+                self.conexao.commit()
+            else:
+                # For SELECT queries, fetch the result set
+                rs = self.cursor.fetchall()
+        except Exception as e:
+            print(f"Erro: {str(e)}")
 
         self.desconectar()
 
         return rs
-
-
-conn = Conexao()

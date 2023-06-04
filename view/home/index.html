@@ -50,17 +50,27 @@
 
             <div class="input-group">
               <label for="senha">Senha gerada: </label>
-              <input type="text" name="senha" placeholder="Senha gerada" />
+              <input
+                type="text"
+                name="senha"
+                placeholder="Senha gerada"
+                id="senha"
+              />
             </div>
 
             <div class="input-group">
               <label for="descricao">Descricao: </label>
-              <input type="text" name="descricao" placeholder="Descricao" />
+              <input
+                type="text"
+                name="descricao"
+                placeholder="Descricao"
+                id="descricao"
+              />
             </div>
 
             <div class="btn-group">
-              <button class="btn">Salvar senha</button>
-              <button class="btn">Limpar</button>
+              <button class="btn" type="submit">Salvar senha</button>
+              <button class="btn" type="reset">Limpar</button>
             </div>
           </form>
         </div>
@@ -73,12 +83,27 @@
         var formulario = document.getElementById("cadastra-senha");
         var btnGenarate = document.getElementById("gerar-senha");
         var lenghtInput = document.getElementById("lenght");
+        var senhaInput = document.getElementById("senha");
+        var descricaoInput = document.getElementById("descricao");
 
-        btnGenarate.addEventListener("click", function (event) {
+        btnGenarate.addEventListener("click", async function (event) {
           event.preventDefault();
 
           var lenght = lenghtInput.value;
-          channel.objects.processaFormulario.generateSenha(lenght);
+          var senha = await channel.objects.processaFormulario.generateSenha(
+            lenght
+          );
+
+          senhaInput.value = senha;
+        });
+
+        formulario.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var password = senhaInput.value;
+          var descricao = descricaoInput.value;
+
+          channel.objects.processaFormulario.guardaSenha(password, descricao);
         });
       });
     </script>
