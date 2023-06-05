@@ -5,12 +5,17 @@ from models.senha import Senha
 class ProcessaFormulario(QObject):
     @pyqtSlot(int, result=QVariant)
     def generateSenha(self, lenght):
-        senha = Senha(lenght)
-        senha.gerarSenha()
-
+        senha = Senha()
+        senha.gerarSenha(lenght)
         return QVariant(senha.getSenha())
 
     @pyqtSlot(str, str)
-    def guardaSenha(self, senha, descricao):
-        password = Senha(0)
-        password.guardarSenha(descricao, senha)
+    def guardaSenha(self, senha, descricao, length):
+        password = Senha(length)
+        password.guardarSenha(descricao, senha, length)
+
+    @pyqtSlot(result=QVariant)
+    def listaSenhas(self):
+        senha = Senha()
+        listaSenha = senha.listarSenha()
+        return QVariant(listaSenha)

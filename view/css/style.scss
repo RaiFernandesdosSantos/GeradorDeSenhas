@@ -111,16 +111,18 @@ html {
       .thead {
         border: 3px solid navy;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
 
         .table-header {
           border: 3px solid magenta;
           display: flex;
           align-items: center;
           padding: 0 0.5rem 0 0.5rem;
+          font-size: 1.5rem;
+          font-weight: bold;
 
-          &:nth-child(2) {
+          &:nth-child(2),
+          &:nth-child(3) {
             justify-content: flex-end;
           }
         }
@@ -129,7 +131,7 @@ html {
       .tbody {
         border: 3px solid lawngreen;
         display: grid;
-        grid-template: repeat(5, 1fr) / 1fr 1fr;
+        grid-template-rows: repeat(7, 1fr);
         gap: 0 1rem;
       }
 
@@ -154,15 +156,17 @@ html {
       .table-row {
         border: 3px solid indianred;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
 
         .table-cell {
           border: 3px solid gold;
           display: flex;
           align-items: center;
           padding: 0 0.5rem 0 0.5rem;
+          font-size: 1.3rem;
 
-          &:nth-child(2) {
+          &:nth-child(2),
+          &:nth-child(3) {
             justify-content: flex-end;
           }
         }
