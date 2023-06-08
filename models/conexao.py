@@ -49,6 +49,7 @@ class Conexao:
             else:
                 # For SELECT queries, fetch the result set
                 rs = self.cursor.fetchall()
+
         except Exception as e:
             print(f"Erro: {str(e)}")
 

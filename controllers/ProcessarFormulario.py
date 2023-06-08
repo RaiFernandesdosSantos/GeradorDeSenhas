@@ -9,9 +9,9 @@ class ProcessaFormulario(QObject):
         senha.gerarSenha(lenght)
         return QVariant(senha.getSenha())
 
-    @pyqtSlot(str, str)
+    @pyqtSlot(str, str, int)
     def guardaSenha(self, senha, descricao, length):
-        password = Senha(length)
+        password = Senha()
         password.guardarSenha(descricao, senha, length)
 
     @pyqtSlot(result=QVariant)

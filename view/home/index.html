@@ -103,7 +103,11 @@
           var password = senhaInput.value;
           var descricao = descricaoInput.value;
 
-          channel.objects.processaFormulario.guardaSenha(password, descricao);
+          channel.objects.processaFormulario.guardaSenha(
+            password,
+            descricao,
+            lenghtInput.value
+          );
         });
       });
     </script>

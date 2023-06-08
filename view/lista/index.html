@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="../css//style.css" />
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
   </head>
   <body>
     <div class="container">
@@ -39,49 +40,7 @@
             <div class="table-header"><span>Pontuacao</span></div>
           </div>
 
-          <div class="tbody">
-            <div class="table-row">
-              <div class="table-cell">Facebook:</div>
-              <div class="table-cell">13246578</div>
-              <div class="table-cell">89</div>
-            </div>
-
-            <div class="table-row">
-              <div class="table-cell">Facebook:</div>
-              <div class="table-cell">13246578</div>
-              <div class="table-cell">89</div>
-            </div>
-
-            <div class="table-row">
-              <div class="table-cell">Facebook:</div>
-              <div class="table-cell">13246578</div>
-              <div class="table-cell">89</div>
-            </div>
-
-            <div class="table-row">
-              <div class="table-cell">Facebook:</div>
-              <div class="table-cell">13246578</div>
-              <div class="table-cell">89</div>
-            </div>
-
-            <div class="table-row">
-              <div class="table-cell">Facebook:</div>
-              <div class="table-cell">13246578</div>
-              <div class="table-cell">89</div>
-            </div>
-
-            <div class="table-row">
-              <div class="table-cell">Facebook:</div>
-              <div class="table-cell">13246578</div>
-              <div class="table-cell">89</div>
-            </div>
-
-            <div class="table-row">
-              <div class="table-cell">Facebook:</div>
-              <div class="table-cell">13246578</div>
-              <div class="table-cell">89</div>
-            </div>
-          </div>
+          <div class="tbody" id="table-body"></div>
 
           <div class="tfooter">
             <div class="table-row">
@@ -100,5 +59,32 @@
 
       <footer id="footer"></footer>
     </div>
+
+    <script>
+      new QWebChannel(qt.webChannelTransport, function (channel) {
+        channel.objects.processaFormulario
+          .listaSenhas()
+          .then(function (senhas) {
+            var tableBody = document.getElementById("table-body");
+
+            tableBody.innerHTML = "";
+
+            senhas.forEach(function (row) {
+              var divRow = document.createElement("div");
+              divRow.className = "table-row";
+
+              for (var i = 1; i < row.length; i++) {
+                var divCell = document.createElement("div");
+                divCell.className = "table-cell";
+                divCell.textContent = row[i];
+
+                divRow.appendChild(divCell);
+              }
+
+              tableBody.appendChild(divRow);
+            });
+          });
+      });
+    </script>
   </body>
 </html>
