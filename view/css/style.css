@@ -113,7 +113,7 @@ html {
 .container #main .table .thead {
   border: 3px solid navy;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .container #main .table .thead .table-header {
   border: 3px solid magenta;
@@ -123,7 +123,7 @@ html {
   font-size: 1.5rem;
   font-weight: bold;
 }
-.container #main .table .thead .table-header:nth-child(2), .container #main .table .thead .table-header:nth-child(3) {
+.container #main .table .thead .table-header:nth-child(2) {
   justify-content: flex-end;
 }
 .container #main .table .tbody {
@@ -159,7 +159,7 @@ html {
   padding: 0 0.5rem 0 0.5rem;
   font-size: 1.3rem;
 }
-.container #main .table .table-row .table-cell:nth-child(2), .container #main .table .table-row .table-cell:nth-child(3) {
+.container #main .table .table-row .table-cell:nth-child(2) {
   justify-content: flex-end;
 }
 .container #footer {

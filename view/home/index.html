@@ -24,10 +24,6 @@
               >Minhas senhas</a
             >
           </div>
-
-          <div class="btn">
-            <a href="#" class="link-header-item">Testar senha</a>
-          </div>
         </div>
       </header>
       <main id="main">
@@ -90,11 +86,19 @@
           event.preventDefault();
 
           var lenght = lenghtInput.value;
-          var senha = await channel.objects.processaFormulario.generateSenha(
-            lenght
-          );
+          var tamanho = parseInt(lenght);
 
-          senhaInput.value = senha;
+          if (!tamanho || tamanho < 8) {
+            event.preventDefault();
+
+            alert("O tamanho precisa ser no minimo 8");
+          } else {
+            var senha = await channel.objects.processaFormulario.generateSenha(
+              lenght
+            );
+
+            senhaInput.value = senha;
+          }
         });
 
         formulario.addEventListener("submit", function (event) {

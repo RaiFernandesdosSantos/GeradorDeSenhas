@@ -22,13 +22,14 @@ class Senha:
         itens = string.ascii_letters + string.digits + "!@#$&*?<>"
 
         # Add one character from each category
-        self.senha.append(secrets.choice(string.ascii_uppercase))
-        self.senha.append(secrets.choice(string.ascii_lowercase))
-        self.senha.append(secrets.choice(string.digits))
-        self.senha.append(secrets.choice("!@#$&*?<>"))
+        for i in range(2):
+            self.senha.extend(secrets.choice(string.ascii_uppercase))
+            self.senha.extend(secrets.choice(string.ascii_lowercase))
+            self.senha.extend(secrets.choice(string.digits))
+            self.senha.extend(secrets.choice("!@#$&*?<>"))
 
         # Add remaining characters randomly
-        for i in range(length - 4):
+        for i in range(length - 8):
             self.senha.append(secrets.choice(itens))
 
         # Shuffle the password and join it into a string
@@ -47,14 +48,12 @@ class Senha:
 
         try:
             rs = self.conexao.executeSql(sql)
-
             senhas = []
 
             for row in rs:
                 entrada = list(row)
                 senhas.append(entrada)
 
-            print(senhas)
             return senhas
 
         except Exception as e:
