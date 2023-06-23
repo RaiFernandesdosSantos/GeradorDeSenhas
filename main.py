@@ -15,7 +15,7 @@ window.resize(700, 550)
 view = QWebEngineView(window)
 
 path = os.path.dirname(__file__)
-home = os.path.join(path, "view", "home", "index.html")
+home = os.path.join(path, "view", "pages", "home", "index.html")
 
 view.setUrl(QUrl.fromLocalFile(home))
 

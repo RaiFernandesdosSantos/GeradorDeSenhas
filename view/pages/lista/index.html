@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../../css//style.css" />
+  <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header id="header">
+      <div class="menu-header">
+        <div class="btn">
+          <a href="../home/index.html" class="link-header-item">
+            Gerar Senha
+          </a>
+        </div>
+        <div class="btn">
+          <span>Minhas senhas</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="table">
+        <div class="thead">
+          <div class="table-header"><span>Descricao</span></div>
+          <div class="table-header"><span>Senha</span></div>
+          <div class="table-header"><span>Acoes</span></div>
+        </div>
+
+        <div class="tbody" id="table-body"></div>
+
+        <div class="tfooter">
+          <div class="table-row">
+            <div class="table-cell">
+              <i></i>
+              <a href="">1</a>
+              <a href="">2</a>
+              <a href="">3</a>
+              <i>...</i>
+              <i></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer"></footer>
+  </div>
+
+  <script>
+    new QWebChannel(qt.webChannelTransport, function (channel) {
+      channel.objects.processaFormulario
+        .listaSenhas()
+        .then(function (senhas) {
+          var tableBody = document.getElementById("table-body");
+
+          tableBody.innerHTML = "";
+
+          senhas.forEach(function (row) {
+            var divRow = document.createElement("div");
+            divRow.className = "table-row";
+
+            for (var i = 1; i < row.length; i++) {
+              var divCell = document.createElement("div");
+              divCell.className = "table-cell";
+              divCell.textContent = row[i];
+
+              divRow.appendChild(divCell);
+            }
+
+            var actions = document.createElement("div");
+            actions.className = "table-cell";
+
+            tableBody.appendChild(divRow);
+          });
+        });
+    });
+  </script>
+</body>
+
+</html>

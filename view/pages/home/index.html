@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../../css/style.css" />
+  <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header id="header">
+      <div class="menu-header">
+        <div class="btn">
+          <span>Gerar Senha</span>
+        </div>
+        <div class="btn">
+          <a href="../lista/index.html" class="link-header-item">Minhas senhas</a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="gerar-senha">
+        <h1>Gerar senha</h1>
+        <form action="" id="cadastra-senha">
+          <div class="input-group">
+            <label for="tamanho">Tamanho da senha: </label>
+            <input type="text" name="tamanho" placeholder="Tamanho da senha" id="lenght" />
+          </div>
+
+          <div class="btn-group">
+            <button class="btn" id="gerar-senha">Gerar senha</button>
+          </div>
+
+          <div class="input-group">
+            <label for="senha">Senha gerada: </label>
+            <input type="text" name="senha" placeholder="Senha gerada" id="senha" />
+          </div>
+
+          <div class="input-group">
+            <label for="descricao">Descricao: </label>
+            <input type="text" name="descricao" placeholder="Descricao" id="descricao" />
+          </div>
+
+          <div class="btn-group">
+            <button class="btn" type="submit">Salvar senha</button>
+            <button class="btn" type="reset">Limpar</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer id="footer"></footer>
+  </div>
+
+  <script>
+    new QWebChannel(qt.webChannelTransport, function (channel) {
+      var formulario = document.getElementById("cadastra-senha");
+      var btnGenarate = document.getElementById("gerar-senha");
+      var lenghtInput = document.getElementById("lenght");
+      var senhaInput = document.getElementById("senha");
+      var descricaoInput = document.getElementById("descricao");
+
+      btnGenarate.addEventListener("click", async function (event) {
+        event.preventDefault();
+
+        var lenght = lenghtInput.value;
+        var tamanho = parseInt(lenght);
+
+        if (!tamanho || tamanho < 8) {
+          event.preventDefault();
+
+          alert("O tamanho precisa ser no minimo 8");
+        } else {
+          var senha = await channel.objects.processaFormulario.generateSenha(
+            lenght
+          );
+
+          senhaInput.value = senha;
+        }
+      });
+
+      formulario.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var password = senhaInput.value;
+        var descricao = descricaoInput.value;
+
+        channel.objects.processaFormulario.guardaSenha(password, descricao);
+      });
+    });
+  </script>
+</body>
+
+</html>

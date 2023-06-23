@@ -1,7 +1,3 @@
-@font-face {
-  font-family: "Robot";
-  src: url("../fonts/Roboto-Thin.ttf") format("ttf"), url("../fonts/Roboto-Light.ttf") format("ttf"), url("../fonts/Roboto-Regular.ttf") format("ttf"), url("../fonts/Roboto-Medium.ttf") format("ttf"), url("../fonts/Roboto-Bold.ttf") format("ttf"), url("../fonts/Roboto-Black.ttf") format("ttf");
-}
 .btn {
   width: 15rem;
   height: 4.5rem;
@@ -13,12 +9,17 @@
   font-size: 1.3rem;
 }
 
+@font-face {
+  font-family: "Robot";
+  src: url("../fonts/Roboto-Thin.ttf") format("ttf"), url("../fonts/Roboto-Light.ttf") format("ttf"), url("../fonts/Roboto-Regular.ttf") format("ttf"), url("../fonts/Roboto-Medium.ttf") format("ttf"), url("../fonts/Roboto-Bold.ttf") format("ttf"), url("../fonts/Roboto-Black.ttf") format("ttf");
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  text-decoration: none;
   font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  color: black;
 }
 
 html {
@@ -27,34 +28,42 @@ html {
 
 .container {
   border: 3px solid red;
-  height: 100vh;
   width: 100%;
+  height: 100vh;
   display: grid;
-  grid-template: repeat(16, 1fr)/repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  grid-template-columns: repeat(16, 1fr);
 }
 .container #header {
   border: 3px solid black;
-  grid-row: 1/3;
-  grid-column: 1/17;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 17;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 }
 .container #header .menu-header {
   border: 3px solid blue;
+  width: 40rem;
   height: 100%;
-  width: 65rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
 }
 .container #main {
   border: 3px solid yellow;
-  grid-column: 1/17;
-  grid-row: 3/15;
+  grid-row-start: 3;
+  grid-row-end: 15;
+  grid-column-start: 1;
+  grid-column-end: 17;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 }
 .container #main .gerar-senha {
   border: 3px solid magenta;
@@ -82,8 +91,8 @@ html {
   font-size: 1.5rem;
 }
 .container #main .gerar-senha form .input-group input {
-  height: 3rem;
   width: 20rem;
+  height: 3rem;
   border-radius: 1rem;
   padding: 0.5rem;
 }
@@ -99,14 +108,15 @@ html {
 .container #main .gerar-senha form .btn-group {
   border: 3px solid red;
   display: flex;
-  gap: 2rem;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 2rem;
 }
 .container #main .table {
   border: 3px solid black;
-  height: 90%;
   width: 80%;
+  height: 90%;
   display: grid;
   grid-template-rows: 1fr 5fr 1fr;
 }
@@ -130,6 +140,7 @@ html {
   border: 3px solid lawngreen;
   display: grid;
   grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 0 1rem;
 }
 .container #main .table .tfooter {
@@ -138,8 +149,8 @@ html {
   align-items: center;
 }
 .container #main .table .tfooter .table-row {
-  height: 100%;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: flex-end;
 }
@@ -164,6 +175,8 @@ html {
 }
 .container #footer {
   border: 3px solid blue;
-  grid-column: 1/17;
-  grid-row: 15/17;
+  grid-row-start: 15;
+  grid-row-end: 17;
+  grid-column-start: 1;
+  grid-column-end: 17;
 }/*# sourceMappingURL=style.css.map */
