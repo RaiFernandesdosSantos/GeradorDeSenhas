@@ -84,6 +84,8 @@ html {
   height: 5rem;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
   padding-left: 1rem;
   gap: 1rem;
 }
@@ -96,22 +98,12 @@ html {
   border-radius: 1rem;
   padding: 0.5rem;
 }
-.container #main .gerar-senha form .frase {
-  border: 3px solid green;
-  height: 15rem;
-}
-.container #main .gerar-senha form .frase textarea {
-  height: 13rem;
-  border-radius: 1rem;
-  padding: 0.5rem;
-}
 .container #main .gerar-senha form .btn-group {
   border: 3px solid red;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  gap: 2rem;
 }
 .container #main .table {
   border: 3px solid black;
@@ -129,9 +121,13 @@ html {
   border: 3px solid magenta;
   display: flex;
   align-items: center;
-  padding: 0 0.5rem 0 0.5rem;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 0 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
+  text-align: left;
+  text-decoration: none;
 }
 .container #main .table .thead .table-header:nth-child(2) {
   justify-content: flex-end;
@@ -157,6 +153,13 @@ html {
 .container #main .table .tfooter .table-row .table-cell {
   border: 3px solid forestgreen;
   width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+.container #main .table .tfooter .table-row .table-cell a {
+  font-size: 1.5rem;
 }
 .container #main .table .table-row {
   border: 3px solid indianred;
@@ -167,11 +170,25 @@ html {
   border: 3px solid gold;
   display: flex;
   align-items: center;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0 0.5rem;
   font-size: 1.3rem;
 }
 .container #main .table .table-row .table-cell:nth-child(2) {
   justify-content: flex-end;
+}
+.container #main .table .table-row .table-cell:nth-child(3) {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.container #main .table .table-row .table-cell:nth-child(3) .cell-item {
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.container #main .table .table-row .table-cell:nth-child(3) .cell-item img {
+  width: 2rem;
 }
 .container #footer {
   border: 3px solid blue;

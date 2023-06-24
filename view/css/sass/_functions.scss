@@ -15,6 +15,13 @@ $fonte: black;
     }
 }
 
+@mixin text($size, $weight, $aling, $decoration) {
+    font-size: $size;
+    font-weight: $weight;
+    text-align: $aling;
+    text-decoration: $decoration;
+}
+
 @mixin flex($align, $justify, $direction) {
     display: flex;
     align-items: $align;
