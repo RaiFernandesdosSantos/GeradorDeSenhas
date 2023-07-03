@@ -47,13 +47,13 @@
             <div class="table-cell"></div>
             <div class="table-cell">
               <div class="cell-item">
-                <img src="../../icons/copy-solid-24.png">
+                <img src="../../includes/icons/copy-solid-24.png">
               </div>
               <div class="cell-item">
-                <img src="../../icons/pencil-regular-24.png">
+                <img src="../../includes/icons/pencil-regular-24.png">
               </div>
               <div class="cell-item">
-                <img src="../../icons/x-regular-24.png">
+                <img src="../../includes/icons/x-regular-24.png">
               </div>
             </div>
           </div>
@@ -62,12 +62,12 @@
         <div class="tfooter">
           <div class="table-row">
             <div class="table-cell">
-              <img src="../../icons/left-arrow-alt-regular-24.png">
+              <img src="../../includes/icons/left-arrow-alt-regular-24.png">
               <a href="">1</a>
               <a href="">2</a>
               <a href="">3</a>
               <i>...</i>
-              <img src="../../icons/right-arrow-alt-regular-24.png">
+              <img src="../../includes/icons/right-arrow-alt-regular-24.png">
             </div>
           </div>
         </div>
@@ -78,6 +78,35 @@
   </div>
 
   <script>
+    function createCellItem(image, tipo, url, texto) {
+      var item = document.createElement("div");
+      item.className = "cell-item";
+
+      alert(texto)
+
+      var img = document.createElement("img");
+      img.src = image;
+
+      if (tipo != 1) {
+        var button = document.createElement("a");
+        button.href = url;
+      }
+      else {
+        var button = document.createElement("button");
+        button.id = idElemento;
+      }
+
+      button.appendChild(img);
+
+      button.addEventListener("click", async function () {
+        await navigator.clipboard.writeText(texto);
+      });
+
+      item.appendChild(button);
+
+      return item;
+    }
+
     new QWebChannel(qt.webChannelTransport, function (channel) {
       channel.objects.processaFormulario
         .listaSenhas()
@@ -100,6 +129,16 @@
 
             var actions = document.createElement("div");
             actions.className = "table-cell";
+
+            item1 = createCellItem("../../includes/icons/copy-solid-24.png", 1, "", row[2]);
+            item2 = createCellItem("../../includes/icons/pencil-regular-24.png", 0, "", row[2]);
+            item3 = createCellItem("../../includes/icons/x-regular-24.png", 0, "", row[2]);
+
+            actions.appendChild(item1);
+            actions.appendChild(item2);
+            actions.appendChild(item3);
+
+            divRow.appendChild(actions);
 
             tableBody.appendChild(divRow);
           });
