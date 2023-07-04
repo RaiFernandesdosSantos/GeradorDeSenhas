@@ -78,11 +78,9 @@
   </div>
 
   <script>
-    function createCellItem(image, tipo, url, texto) {
+    function createCellItem(image, tipo, url, idElemento) {
       var item = document.createElement("div");
       item.className = "cell-item";
-
-      alert(texto)
 
       var img = document.createElement("img");
       img.src = image;
@@ -97,14 +95,24 @@
       }
 
       button.appendChild(img);
-
-      button.addEventListener("click", async function () {
-        await navigator.clipboard.writeText(texto);
-      });
-
       item.appendChild(button);
 
       return item;
+    }
+
+    function copySenha(idBtn, idInput) {
+      var input = document.getElementById(idInput);
+      var button = document.getElementById(idBtn);
+
+      button.addEventListener("click", function () {
+        var textArea = document.createElement("textarea");
+        textArea.value = input.value;
+
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      });
     }
 
     new QWebChannel(qt.webChannelTransport, function (channel) {
@@ -127,12 +135,23 @@
               divRow.appendChild(divCell);
             }
 
+            var inputHidden = document.createElement("input");
+            inputHidden.type = "hidden";
+            inputHidden.value = row[2];
+
+            divRow.appendChild(inputHidden);
+
             var actions = document.createElement("div");
             actions.className = "table-cell";
 
-            item1 = createCellItem("../../includes/icons/copy-solid-24.png", 1, "", row[2]);
-            item2 = createCellItem("../../includes/icons/pencil-regular-24.png", 0, "", row[2]);
-            item3 = createCellItem("../../includes/icons/x-regular-24.png", 0, "", row[2]);
+            var idBtn = "copy" + row[0]
+            var idInput = "input" + row[0];
+
+            inputHidden.id = idInput;
+
+            item1 = createCellItem("../../includes/icons/copy-solid-24.png", 1, "", idBtn);
+            item2 = createCellItem("../../includes/icons/pencil-regular-24.png", 0, "", idBtn);
+            item3 = createCellItem("../../includes/icons/x-regular-24.png", 0, "", idBtn);
 
             actions.appendChild(item1);
             actions.appendChild(item2);
@@ -141,6 +160,8 @@
             divRow.appendChild(actions);
 
             tableBody.appendChild(divRow);
+
+            copySenha(idBtn, idInput);
           });
         });
     });
