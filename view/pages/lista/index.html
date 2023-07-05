@@ -78,40 +78,48 @@
   </div>
 
   <script>
-    function createCellItem(image, tipo, url, idElemento) {
-      var item = document.createElement("div");
+    /**
+     * Creates a cell item element with an image, type, URL or ID.
+     *
+     * @param {string} image - The image source.
+     * @param {number} type - The type of the cell item.
+     * @param {string} url - The URL or ID of the cell item.
+     * @param {string} idElement - The ID of the element.
+     * @returns {HTMLElement} - The created cell item element.
+     */
+    function createCellItem(image, type, url, idElement) {
+      // Create the cell item element
+      const item = document.createElement("div");
       item.className = "cell-item";
 
-      var img = document.createElement("img");
+      // Create the image element
+      const img = document.createElement("img");
       img.src = image;
 
-      if (tipo != 1) {
-        var button = document.createElement("a");
-        button.href = url;
-      }
-      else {
-        var button = document.createElement("button");
-        button.id = idElemento;
-      }
-
+      // Create the button element
+      const button = (type !== 1) ? document.createElement("a") : document.createElement("button");
       button.appendChild(img);
+      button[type !== 1 ? "href" : "id"] = type !== 1 ? url : idElement;
+
+      // Add the button element to the cell item element
       item.appendChild(button);
 
+      // Return the created cell item element
       return item;
     }
 
+    /**
+     * Copies the value of an input element to the clipboard when a button is clicked.
+     * 
+     * @param {string} idBtn - The id of the button element.
+     * @param {string} idInput - The id of the input element.
+     */
     function copySenha(idBtn, idInput) {
-      var input = document.getElementById(idInput);
-      var button = document.getElementById(idBtn);
+      const input = document.getElementById(idInput);
+      const button = document.getElementById(idBtn);
 
       button.addEventListener("click", function () {
-        var textArea = document.createElement("textarea");
-        textArea.value = input.value;
-
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
+        navigator.clipboard.writeText(input.value);
       });
     }
 

@@ -15,6 +15,9 @@ class Conexao:
     # Region: Connection Management
 
     def desconectar(self):
+        """
+        Disconnects from the database by closing the cursor and the connection.
+        """
         self.cursor.close()
         self.conexao.close()
 
@@ -32,10 +35,19 @@ class Conexao:
     # Region: Query Execution
 
     def executeSql(self, sql, params=None):
+        """
+        Executes the given SQL query and returns the result set if it's a SELECT query.
+        If the query is not a SELECT query, it commits the changes to the database.
+
+        Args:
+            sql (str): The SQL query to execute.
+            params (tuple, optional): The parameters to substitute in the query.
+
+        Returns:
+            list: The result set if the query is a SELECT query, otherwise an empty list.
+        """
         self.conectar()
         rs = []
-
-        # Execute the query
 
         try:
             if params is not None:
@@ -44,10 +56,8 @@ class Conexao:
                 self.cursor.execute(sql)
 
             if not sql.strip().lower().startswith("select"):
-                # For non-SELECT queries, commit the changes to the database
                 self.conexao.commit()
             else:
-                # For SELECT queries, fetch the result set
                 rs = self.cursor.fetchall()
 
         except Exception as e:
