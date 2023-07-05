@@ -1,10 +1,10 @@
+from controllers.ProcessarFormulario import ProcessaFormulario
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWebChannel import QWebChannel
 from PyQt6.QtCore import QUrl
 import sys
 import os
-from controllers.ProcessarFormulario import ProcessaFormulario
-from PyQt6.QtWebChannel import QWebChannel
 
 app = QApplication(sys.argv)
 

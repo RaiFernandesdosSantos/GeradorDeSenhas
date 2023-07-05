@@ -12,20 +12,14 @@
 </head>
 
 <body>
-  <div class="container">
-    <header id="header">
-      <div class="menu-header">
-        <div class="btn">
-          <a href="../home/index.html" class="link-header-item">
-            Gerar Senha
-          </a>
-        </div>
-        <div class="btn">
-          <span>Minhas senhas</span>
-        </div>
-      </div>
-    </header>
+  <script type="module">
+    import { headerCustom } from "../../includes/components/header.js";
 
+    const container = document.querySelector(".container");
+    const header = headerCustom();
+    container.appendChild(header);
+  </script>
+  <div class="container">
     <section id="section">
       <form>
         <label for="barra"></label>
