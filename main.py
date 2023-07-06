@@ -6,6 +6,7 @@ from PyQt6.QtCore import QUrl
 import sys
 import os
 
+
 app = QApplication(sys.argv)
 
 window = QMainWindow()
