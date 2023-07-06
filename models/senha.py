@@ -91,8 +91,27 @@ class Senha:
         sql = "INSERT INTO senha (descricao, senha) VALUES (?, ?)"
         self.conexao.executeSql(sql, (descricao, senha))
 
-    def editaSenha(self, descricao, senha):
-        pass
+    def editaSenha(self, descricao, senha, id):
+        """
+        Update the description and password for a given id in the senha table.
+
+        Args:
+            description (str): The new description.
+            password (str): The new password.
+            id (int): The id of the record to be updated.
+        """
+        # Prepare the SQL query
+        sql = "UPDATE senha SET descricao = ?, senha = ? WHERE id = ?"
+
+        # Execute the SQL query with the provided parameters
+        self.conexao.executeSql(sql, (descricao, senha, id))
 
     def deleteSenha(self, id):
-        pass
+        """
+        Delete a record from the 'senha' table based on the given id.
+
+        Args:
+            id (int): The id of the record to be deleted.
+        """
+        sql = "DELETE FROM senha WHERE id = ?"
+        self.conexao.executeSql(sql, (id))

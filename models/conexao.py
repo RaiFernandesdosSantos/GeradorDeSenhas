@@ -22,6 +22,9 @@ class Conexao:
         self.conexao.close()
 
     def conectar(self):
+        """
+        Connects to the database.
+        """
         # Database connection setup
         self.conexao = sqlite3.connect("gerenciadorSenha.db")
 

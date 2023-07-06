@@ -6,10 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
 </head>
 
 <body>
-    <script></script>
+    <script>
+        new QWebChannel(qt.webChannelTransport, function (channel) {
+            const param = new URLSearchParams(window.location.search);
+            const id = param.get("id");
+            channel.objects.processaFormulario.deleteSenha(id);
+        })
+    </script>
 </body>
 
 </html>

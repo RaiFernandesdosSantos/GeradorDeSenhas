@@ -40,3 +40,25 @@ class ProcessaFormulario(QObject):
         """
         senha = Senha()
         return QVariant(senha.listarSenha())
+
+    @pyqtSlot(str, str, int)
+    def editaSenha(self, descricao, senha, id):
+        """
+        Updates the description and password for a given id in the senha table.
+
+        Args:
+            descricao (str): The new description.
+            password (str): The new password.
+            id (int): The id of the record to be updated.
+        """
+        Senha().editaSenha(descricao, senha, id)
+
+    @pyqtSlot(int)
+    def deletaSenha(self, id):
+        """
+        Deletes a record from the 'senha' table based on the given id.
+
+        Args:
+            id (int): The id of the record to be deleted.
+        """
+        Senha().deleteSenha(id)

@@ -118,13 +118,14 @@
     }
 
     new QWebChannel(qt.webChannelTransport, function (channel) {
+      // Connect to the QWebChannel and retrieve the "processaFormulario" object
       channel.objects.processaFormulario
         .listaSenhas()
         .then(function (senhas) {
           var tableBody = document.getElementById("table-body");
+          var fragment = document.createDocumentFragment();
 
-          tableBody.innerHTML = "";
-
+          // Iterate over each senha in the "senhas" array
           senhas.forEach(function (row) {
             var divRow = document.createElement("div");
             divRow.className = "table-row";
@@ -140,31 +141,31 @@
             var inputHidden = document.createElement("input");
             inputHidden.type = "hidden";
             inputHidden.value = row[2];
+            inputHidden.id = 'input' + row[0];
 
             divRow.appendChild(inputHidden);
 
             var actions = document.createElement("div");
             actions.className = "table-cell";
 
-            var idBtn = "copy" + row[0]
-            var idInput = "input" + row[0];
+            var idBtn = 'copy' + row[0];
 
-            inputHidden.id = idInput;
-
-            item1 = createCellItem("../../includes/icons/copy-solid-24.png", 1, "", idBtn);
-            item2 = createCellItem("../../includes/icons/pencil-regular-24.png", 0, "", idBtn);
-            item3 = createCellItem("../../includes/icons/x-regular-24.png", 0, "", idBtn);
-
-            actions.appendChild(item1);
-            actions.appendChild(item2);
-            actions.appendChild(item3);
+            var item = createCellItem("../../includes/icons/copy-solid-24.png", 1, "", idBtn);
+            actions.appendChild(item);
+            item = createCellItem("../../includes/icons/pencil-regular-24.png", 0, "", idBtn);
+            actions.appendChild(item);
+            item = createCellItem("../../includes/icons/x-regular-24.png", 0, "", idBtn);
+            actions.appendChild(item);
 
             divRow.appendChild(actions);
 
-            tableBody.appendChild(divRow);
+            fragment.appendChild(divRow);
 
-            copySenha(idBtn, idInput);
+            copySenha(idBtn, inputHidden.id);
           });
+
+          tableBody.innerHTML = "";
+          tableBody.appendChild(fragment);
         });
     });
   </script>
